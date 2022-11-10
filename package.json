@@ -1,0 +1,39 @@
+{
+  "name": "nodejs-lab1",
+  "version": "1.0.0",
+  "description": "lab1",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --ignore-path .gitignore .",
+    "lint:fix": "npm run lint -- --fix",
+    "format": "prettier --ignore-path .gitignore --check .",
+    "format:fix": "prettier --ignore-path .gitignore --write .",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plntry/nodejs-lab1.git"
+  },
+  "keywords": [
+    "lab"
+  ],
+  "author": "Oksana Nedilko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/plntry/nodejs-lab1/issues"
+  },
+  "homepage": "https://github.com/plntry/nodejs-lab1#readme",
+  "devDependencies": {
+    "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.3.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-sonarjs": "^0.16.0",
+    "husky": "^8.0.1",
+    "prettier": "2.7.1"
+  }
+}
