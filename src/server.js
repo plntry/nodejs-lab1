@@ -8,7 +8,7 @@ const processedContentTypes = {
   'text/html': (text) => text,
   'text/plain': (text) => text,
   'application/json': (json) => safeJSON(json, {}),
-  'x-www-form-urlencoded': (data) => {
+  'application/x-www-form-urlencoded': (data) => {
     return Object.fromEntries(new URLSearchParams(data))
   },
 }
