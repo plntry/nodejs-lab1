@@ -2,7 +2,7 @@
   "name": "nodejs-lab1",
   "version": "1.0.0",
   "engines": {
-    "node": ">=14.0.0"
+    "node": "14.x"
   },
   "description": "lab1",
   "type": "module",
