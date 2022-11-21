@@ -14,12 +14,15 @@ const processedContentTypes = {
 }
 
 const server = http.createServer(async (req, res) => {
-  // console.log(req.headers, 'req headers');
-  const url = new URL(req.url || '/', `https://${req.headers.host}`)
-  // console.log(url);
-  // console.log(router.get(url.pathname), 'pathname');
+  console.log(req.headers, 'req headers')
+  console.log(req.url, 'req url')
+  console.log(`https://${req.headers.host}`)
+  const url = new URL('/', `https://${req.headers.host}`)
+  console.log(url, 'url')
+  console.log(router, 'router')
+  console.log(router.get(url.pathname), 'pathname')
   const routerModule = router.get(url.pathname) ?? {}
-  // console.log(routerModule[req?.method], 'module method');
+  console.log(routerModule[req?.method], 'module method')
   const handler = routerModule[req?.method] ?? defaultHandler
 
   let payload = {}
