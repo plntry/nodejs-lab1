@@ -14,9 +14,10 @@ const processedContentTypes = {
 }
 
 const server = http.createServer(async (req, res) => {
-  const url = new URL(req.url || '/', `https://${req.headers.host}`)
+  const url = new URL(req.url || '/api/app/', `https://${req.headers.host}`)
 
   const routerModule = router.get(url.pathname) ?? {}
+
   const handler = routerModule[req?.method] ?? defaultHandler
 
   let payload = {}
@@ -25,7 +26,7 @@ const server = http.createServer(async (req, res) => {
   for await (const chunk of req) {
     rawRequest += chunk
   }
-  console.log(rawRequest, 'rawreq')
+
   if (req.headers['content-type']) {
     const contentType = req.headers['content-type'].split(';')[0]
     if (processedContentTypes[contentType]) {
