@@ -41,7 +41,9 @@ const server = http.createServer(async (req, res) => {
   }
 })
 
-server.on('clientError', (_error, socket) => {
+server.on('clientError', (error, socket) => {
+  if (error) console.log(error)
+
   socket.end('HTTP/1.1 400 bad request\r\n\r\n')
 })
 
