@@ -1,8 +1,8 @@
 import * as http from 'node:http'
-import safeJSON from './utils.js'
-import defaultHandler from './defaultHandler.js'
-import helpers from './helpers.js'
-import router from './router.js'
+import safeJSON from '../src/utils.js'
+import defaultHandler from '../src/defaultHandler.js'
+import helpers from '../src/helpers.js'
+import router from '../src/router.js'
 
 const processedContentTypes = {
   'text/html': (text) => text,
@@ -14,8 +14,12 @@ const processedContentTypes = {
 }
 
 const server = http.createServer(async (req, res) => {
+  // console.log(req.headers, 'req headers');
   const url = new URL(req.url || '/', `https://${req.headers.host}`)
+  // console.log(url);
+  // console.log(router.get(url.pathname), 'pathname');
   const routerModule = router.get(url.pathname) ?? {}
+  // console.log(routerModule[req?.method], 'module method');
   const handler = routerModule[req?.method] ?? defaultHandler
 
   let payload = {}
@@ -24,7 +28,7 @@ const server = http.createServer(async (req, res) => {
   for await (const chunk of req) {
     rawRequest += chunk
   }
-
+  console.log(rawRequest, 'rawreq')
   if (req.headers['content-type']) {
     const contentType = req.headers['content-type'].split(';')[0]
     if (processedContentTypes[contentType]) {
@@ -49,9 +53,9 @@ server.listen(parseInt(process.env.PORT) || 8000)
 process.on('SIGINT', () => {
   server.close((error) => {
     if (error) {
-      // console.log(error)
-      // process.exit(1)
-      throw new Error(error)
+      console.log(error)
+      // eslint-disable-next-line n/no-process-exit
+      process.exit(1)
     }
   })
 })
