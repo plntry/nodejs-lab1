@@ -1,4 +1,5 @@
 import * as http from 'node:http'
+import { xml2json } from 'xml-js'
 import safeJSON from '../src/utils.js'
 import defaultHandler from '../src/defaultHandler.js'
 import helpers from '../src/helpers.js'
@@ -10,6 +11,9 @@ const processedContentTypes = {
   'application/json': (json) => safeJSON(json, {}),
   'application/x-www-form-urlencoded': (data) => {
     return Object.fromEntries(new URLSearchParams(data))
+  },
+  'text/xml': (xml) => {
+    return xml2json(xml, { spaces: 2, compact: true })
   },
 }
 
