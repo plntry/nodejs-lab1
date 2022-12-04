@@ -4,6 +4,8 @@ import { readdir } from 'node:fs/promises'
 
 const router = new Map()
 
+export const basePath = '/api/app'
+
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
@@ -26,7 +28,7 @@ async function loadRoutesDir(dirName, base) {
       const modulePath = pathToFileURL(path.join(workDir, dirent.name))
       const module = await import(modulePath)
 
-      router.set(`/api/app${relativePath.split(path.sep).join('/')}`, {
+      router.set(`${basePath}${relativePath.split(path.sep).join('/')}`, {
         ...module,
       })
     }

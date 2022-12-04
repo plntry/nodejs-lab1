@@ -2,7 +2,7 @@ import * as http from 'node:http'
 import safeJSON from '../src/utils.js'
 import defaultHandler from '../src/defaultHandler.js'
 import helpers from '../src/helpers.js'
-import router from '../src/router.js'
+import router, { basePath } from '../src/router.js'
 
 const processedContentTypes = {
   'text/html': (text) => text,
@@ -14,7 +14,7 @@ const processedContentTypes = {
 }
 
 const server = http.createServer(async (req, res) => {
-  const url = new URL(req.url || '/api/app/', `https://${req.headers.host}`)
+  const url = new URL(req.url || basePath, `https://${req.headers.host}`)
 
   const routerModule = router.get(url.pathname) ?? {}
 
