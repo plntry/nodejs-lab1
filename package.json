@@ -40,8 +40,5 @@
     "eslint-plugin-sonarjs": "^0.16.0",
     "husky": "^8.0.1",
     "prettier": "2.7.1"
-  },
-  "dependencies": {
-    "xml-js": "^1.6.11"
   }
 }
